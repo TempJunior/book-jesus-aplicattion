@@ -1,11 +1,16 @@
 <script setup lang="ts">
-
 import { ref } from 'vue'
 
-const isDropdownOpen = ref(false);
+const isDropdownOpenLivros = ref(false)
 
-function toggleDropdown() {
-  isDropdownOpen.value = !isDropdownOpen.value;
+function toggleDropdownLivros() {
+  isDropdownOpenLivros.value = !isDropdownOpenLivros.value
+}
+
+const isDropdownOpenAvatar = ref(false)
+
+function toggleDropdownAvatar() {
+  isDropdownOpenAvatar.value = !isDropdownOpenAvatar.value
 }
 </script>
 
@@ -55,9 +60,10 @@ function toggleDropdown() {
             >
           </li>
 
-          <li class="relative z-30"> <!-- <= PAI COM relative -->
+          <li class="relative z-30">
+            <!-- <= PAI COM relative -->
             <button
-              @click="toggleDropdown"
+              @click="toggleDropdownLivros"
               class="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
             >
               Livros
@@ -80,7 +86,7 @@ function toggleDropdown() {
 
             <!-- Dropdown menu -->
             <div
-              v-show="isDropdownOpen"
+              v-show="isDropdownOpenLivros"
               id="dropdownNavbar"
               class="absolute top-full left-0 z-40 mt-2 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
             >
@@ -89,14 +95,14 @@ function toggleDropdown() {
                   <a
                     href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Dashboard</a
+                    >Dashboard</a
                   >
                 </li>
                 <li>
                   <a
                     href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >Earnings</a
+                    >Earnings</a
                   >
                 </li>
               </ul>
@@ -104,12 +110,11 @@ function toggleDropdown() {
                 <a
                   href="#"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                >Sign out</a
+                  >Sign out</a
                 >
               </div>
             </div>
           </li>
-
 
           <li>
             <a
@@ -125,12 +130,36 @@ function toggleDropdown() {
               >Pricing</a
             >
           </li>
-          <li>
-            <a
-              href="#"
-              class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >Contact</a
+
+          <li class="relative z-30">
+            <div
+              @click="toggleDropdownAvatar"
+              class="cursor-pointer inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
             >
+              <span class="font-medium text-sm text-gray-600 dark:text-gray-300">JB</span>
+              <div
+                v-show="isDropdownOpenAvatar"
+                id="dropdownNavbar"
+                class="absolute top-full left-0 z-40 mt-2 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
+              >
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 z-50">
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Minha conta</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Sair</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
       </div>

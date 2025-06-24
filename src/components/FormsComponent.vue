@@ -3,6 +3,7 @@
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import { useAxiosStore } from '@/stores/axiosStore.ts'
 import { ref } from 'vue'
+import router from '@/router'
 const userEmail = ref('' as string)
 const userPassword = ref('' as string)
 
@@ -16,8 +17,9 @@ const handlerLogin = async () => {
     })
 
     console.log(response.data)
-    const token = response.data.token;
-    console.log(token);
+    // const token = response.data.token;
+
+    await router.push({ name: 'home' })
   }catch (error) {
     console.log('error', error)
   }
