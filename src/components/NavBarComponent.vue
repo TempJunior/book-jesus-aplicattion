@@ -12,6 +12,8 @@ const isDropdownOpenAvatar = ref(false)
 function toggleDropdownAvatar() {
   isDropdownOpenAvatar.value = !isDropdownOpenAvatar.value
 }
+
+
 </script>
 
 <template>

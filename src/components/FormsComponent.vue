@@ -19,7 +19,7 @@ const handlerLogin = async () => {
     console.log(response.data)
     // const token = response.data.token;
 
-    await router.push({ name: 'home' })
+    await router.push({ name: 'livros' })
   }catch (error) {
     console.log('error', error)
   }
