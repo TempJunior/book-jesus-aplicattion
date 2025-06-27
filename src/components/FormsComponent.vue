@@ -1,13 +1,13 @@
 <script setup lang="ts">
-
 import ButtonComponent from '@/components/ButtonComponent.vue'
 import { useAxiosStore } from '@/stores/axiosStore.ts'
 import { ref } from 'vue'
 import router from '@/router'
+
 const userEmail = ref('' as string)
 const userPassword = ref('' as string)
 
-const store = useAxiosStore();
+const store = useAxiosStore()
 
 const handlerLogin = async () => {
   try {
@@ -16,25 +16,30 @@ const handlerLogin = async () => {
       password: userPassword.value,
     })
 
+    const { token, nome, email, telefone } = response.data
+
     console.log(response.data)
-    // const token = response.data.token;
+    store.setTokenJWT(token)
+    store.setUserData({
+      token,
+      nome,
+      email,
+      telefone,
+    })
 
     await router.push({ name: 'livros' })
-  }catch (error) {
+  } catch (error) {
     console.log('error', error)
   }
 }
 </script>
 
 <template>
-
   <form class="space-y-4 md:space-y-6" action="#" @submit.prevent="handlerLogin">
     <!--EMAIL-->
     <div>
-      <label
-        for="email"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >E-mail</label
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >E-mail</label
       >
       <!--RECEBE O EMAIL-->
       <input
@@ -49,10 +54,9 @@ const handlerLogin = async () => {
 
     <!--SENHA-->
     <div>
-      <label
-        for="password"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Senha</label>
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Senha</label
+      >
 
       <!--RECEBE O SENHA-->
       <input
@@ -79,26 +83,22 @@ const handlerLogin = async () => {
           <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
         </div>
       </div>
-      <a
-        href="#"
-        class="text-sm font-medium text-white hover:underline dark:text-primary-500"
-      >Forgot password?</a
+      <a href="#" class="text-sm font-medium text-white hover:underline dark:text-primary-500"
+        >Forgot password?</a
       >
     </div>
-    <ButtonComponent
-      label="Entrar"
-    />
+    <ButtonComponent label="Entrar" />
 
     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-      Don’t have an account yet?
-      <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-      >Sign up</a
+      Não possui uma conta?
+      <a
+        @click="router.push({ name: 'register' })"
+        href="#"
+        class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+        >Crie sua conta</a
       >
     </p>
-
   </form>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
