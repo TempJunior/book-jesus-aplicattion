@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import NavBarComponent from '@/components/NavBarComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import ApresentationComponent from '@/components/ApresentationComponent.vue'
+import NavForHomePageAndLogin from '@/components/NavForHomePageAndLogin.vue'
 </script>
 
 <template>
-  <NavBarComponent />
+  <NavForHomePageAndLogin />
 
   <main class="h-screen">
     <ApresentationComponent />
