@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useAxiosStore } from '@/stores/axiosStore.ts'
+import { getInitialCharOfName } from '@/helpers/GetInitialCharOfName.ts'
+import router from '@/router'
+
+const store = useAxiosStore()
 
 const isDropdownOpenLivros = ref(false)
 
@@ -13,7 +18,19 @@ function toggleDropdownAvatar() {
   isDropdownOpenAvatar.value = !isDropdownOpenAvatar.value
 }
 
+const userInitials = computed(() => {
+  return store.userData?.nome
+    ? getInitialCharOfName(store.userData.nome)
+    : ''
+})
 
+function logout() {
+  store.clearUserData()
+  router.push({name: 'home' })
+}
+
+console.log(userInitials.value)
+console.log(store.userData)
 </script>
 
 <template>
@@ -138,7 +155,7 @@ function toggleDropdownAvatar() {
               @click="toggleDropdownAvatar"
               class="cursor-pointer inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
             >
-              <span class="font-medium text-sm text-gray-600 dark:text-gray-300">JB</span>
+              <span class="font-medium text-sm text-gray-600 dark:text-gray-300">{{ userInitials }}</span>
               <div
                 v-show="isDropdownOpenAvatar"
                 id="dropdownNavbar"
@@ -154,6 +171,7 @@ function toggleDropdownAvatar() {
                   </li>
                   <li>
                     <a
+                      @click="logout"
                       href="#"
                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >Sair</a
