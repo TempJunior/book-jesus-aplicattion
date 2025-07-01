@@ -5,13 +5,16 @@ import NavForHomePageAndLogin from '@/components/NavForHomePageAndLogin.vue'
 </script>
 
 <template>
-  <NavForHomePageAndLogin />
+  <div>
+    <NavForHomePageAndLogin />
 
-  <main class="h-screen">
-    <ApresentationComponent />
+    <main class="h-screen">
+      <ApresentationComponent />
 
-    <FooterComponent />
-  </main>
+      <FooterComponent />
+    </main>
+  </div>
+
 </template>
 
 <style scoped></style>

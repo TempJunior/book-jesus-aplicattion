@@ -32,10 +32,12 @@ const handlerLogin = async () => {
     console.log('error', error)
   }
 }
+
 </script>
 
 <template>
-  <form class="space-y-4 md:space-y-6" action="#" @submit.prevent="handlerLogin">
+  <form
+    class="space-y-4 md:space-y-6" action="#" @submit.prevent="handlerLogin">
     <!--EMAIL-->
     <div>
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -101,4 +103,6 @@ const handlerLogin = async () => {
   </form>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

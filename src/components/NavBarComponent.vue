@@ -29,12 +29,16 @@ function logout() {
   router.push({name: 'home' })
 }
 
+const menuVisible = ref(true)
 console.log(userInitials.value)
 console.log(store.userData)
 </script>
 
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+  <Transition name="fade">
+  <nav
+    v-show="menuVisible"
+    class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="/src/assets/read.png" class="h-8" alt="Flowbite Logo" />
@@ -185,6 +189,28 @@ console.log(store.userData)
       </div>
     </div>
   </nav>
+  </Transition>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-from{
+  opacity: 0;
+}
+
+.fader-enter-to{
+  opacity: 1;
+}
+
+.fade-enter-active{
+  transition: all 2s ease;
+}
+
+.fade-leave-from{
+  opacity: 1;
+}
+
+.fader-leave-to{
+  opacity: 0;
+}
+
+</style>
