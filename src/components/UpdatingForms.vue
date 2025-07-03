@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useAxiosStore } from '@/stores/axiosStore.ts'
 import { ref } from 'vue'
-import ButtonComponent from '@/components/ButtonComponent.vue'
 import EditButton from '@/components/EditButton.vue'
 
 export interface Props {
@@ -33,15 +32,15 @@ if (user) {
       <h1 class="text-3xl text-white">Login e segurança</h1>
     </div>
 
-    <div class="flex flex-col w-[500px] rounded-2xl border border-white outline-none bg-gray-900 mt-2">
+    <div
+      class="flex flex-col w-[500px] rounded-2xl border border-white outline-none bg-gray-900 mt-2"
+    >
       <div class="border-b rounded-t-2xl p-4 flex justify-between items-center text-white">
         <div class="flex flex-col">
           <h1 class="text-[18px]">Nome</h1>
           <span>{{ props.userName }}</span>
         </div>
-        <EditButton
-        label="Editar"
-        />
+        <EditButton label="Editar" />
       </div>
 
       <div class="border-b rounded-t-2xl p-4 flex justify-between items-center text-white">
@@ -49,9 +48,7 @@ if (user) {
           <h1 class="text-[18px]">E-mail</h1>
           <span>{{ userEmail }}</span>
         </div>
-        <EditButton
-          label="Editar"
-        />
+        <EditButton label="Editar" />
       </div>
 
       <div class="rounded-t-2xl p-4 flex justify-between items-center text-white">
@@ -59,9 +56,7 @@ if (user) {
           <h1 class="text-[18px]">Telefone</h1>
           <span>{{ userTel }}</span>
         </div>
-        <EditButton
-          label="Editar"
-        />
+        <EditButton label="Editar" />
       </div>
     </div>
   </section>
