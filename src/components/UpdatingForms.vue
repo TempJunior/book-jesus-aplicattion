@@ -1,47 +1,70 @@
 <script setup lang="ts">
-
-import ButtonComponent from '@/components/ButtonComponent.vue'
 import { useAxiosStore } from '@/stores/axiosStore.ts'
 import { ref } from 'vue'
+import ButtonComponent from '@/components/ButtonComponent.vue'
+import EditButton from '@/components/EditButton.vue'
 
-const store = useAxiosStore();
-const user = store.userData;
+export interface Props {
+  userName: string
+}
 
-const userEmail  = ref('' as string);
-const userTel  = ref('' as string);
+const props = withDefaults(defineProps<Props>(), {
+  userName: '',
+})
 
-if (user){
-  userEmail.value = user.email;
-  userTel.value = user.telefone;
-}else {
-  userEmail.value = ' ';
-  userTel.value = ' ';
+const store = useAxiosStore()
+const user = store.userData
+
+const userEmail = ref('' as string)
+const userTel = ref('' as string)
+
+if (user) {
+  userEmail.value = user.email
+  userTel.value = user.telefone
+} else {
+  userEmail.value = ' '
+  userTel.value = ' '
 }
 </script>
 
 <template>
-
-  <form class="max-w-md">
-    <div class="relative z-0 w-full mb-5 group">
-      <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " :value="userEmail"/>
-      <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+  <section class="flex flex-col items-center justify-center">
+    <div class="mt-8">
+      <h1 class="text-3xl text-white">Login e segurança</h1>
     </div>
 
-    <div class="grid md:grid-cols-2 md:gap-6">
-      <div class="relative z-0 w-full mb-5 group">
-        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " :value="userTel"/>
-        <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
+    <div class="flex flex-col w-[500px] rounded-2xl border border-white outline-none bg-gray-900 mt-2">
+      <div class="border-b rounded-t-2xl p-4 flex justify-between items-center text-white">
+        <div class="flex flex-col">
+          <h1 class="text-[18px]">Nome</h1>
+          <span>{{ props.userName }}</span>
+        </div>
+        <EditButton
+        label="Editar"
+        />
+      </div>
+
+      <div class="border-b rounded-t-2xl p-4 flex justify-between items-center text-white">
+        <div class="flex flex-col">
+          <h1 class="text-[18px]">E-mail</h1>
+          <span>{{ userEmail }}</span>
+        </div>
+        <EditButton
+          label="Editar"
+        />
+      </div>
+
+      <div class="rounded-t-2xl p-4 flex justify-between items-center text-white">
+        <div class="flex flex-col">
+          <h1 class="text-[18px]">Telefone</h1>
+          <span>{{ userTel }}</span>
+        </div>
+        <EditButton
+          label="Editar"
+        />
       </div>
     </div>
-    <ButtonComponent
-      class="mt-12"
-    label="Atualizar"
-    />
-
-  </form>
-
+  </section>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
