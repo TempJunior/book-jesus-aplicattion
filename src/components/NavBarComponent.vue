@@ -106,7 +106,6 @@ console.log(store.userData)
               </svg>
             </button>
 
-            <!-- Dropdown menu -->
             <div
               v-show="isDropdownOpenLivros"
               id="dropdownNavbar"
@@ -116,7 +115,7 @@ console.log(store.userData)
                 <li>
                   <a
                     @click="router.push({name: 'emprestimos'})"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    class="cursor-pointer block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >Emprestimos</a
                   >
                 </li>

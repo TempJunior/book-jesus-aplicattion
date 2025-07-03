@@ -16,13 +16,14 @@ const handlerLogin = async () => {
       password: userPassword.value,
     })
 
-    const { token, nome, email, telefone } = response.data
+    const { token,id, nome, email, telefone } = response.data
 
     console.log(response.data)
     store.setTokenJWT(token)
     store.setUserData({
       token,
       nome,
+      id,
       email,
       telefone,
     })
