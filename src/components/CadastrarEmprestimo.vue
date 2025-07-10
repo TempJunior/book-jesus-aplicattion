@@ -92,7 +92,7 @@ onBeforeMount(() => {
         >Usuario</label
       >
       <input
-        v-model="userId"
+        :value="userName"
         type="text"
         id="disabled-input"
         aria-label="disabled input"
@@ -105,17 +105,23 @@ onBeforeMount(() => {
         >Escolha o seu livro</label
       >
       <select
+        v-if="livros?.content?.length"
         v-model="livroId"
-        id="small"
+        id="livro"
         class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
-        <option disabled selected>Selecione</option>
+        <option disabled value="">Selecione</option>
         <option
+          v-for="livro in livros.content"
+          :key="livro.id"
           :value="livro.id"
-          v-for="livro in livros?.content" :key="livro.id">
+        >
           {{ livro.titulo }}
         </option>
       </select>
+
+      <!-- Mostra loading enquanto carrega -->
+      <p v-else class="text-sm text-gray-400 italic">Carregando livros...</p>
     </div>
     <button
       @click="handlerMakeEmprestimos"
