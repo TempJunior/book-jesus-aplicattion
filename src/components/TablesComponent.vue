@@ -7,7 +7,9 @@ import { onMounted, ref } from 'vue'
 
 const store = useAxiosStore()
 const emprestimos = ref<IPage<IEmprestimo>| null>(null)
+
 console.log(`TOKEN JWT ${store.tokenJWT}`)
+
 const handlerEmprestimos = async () => {
   try {
     const userId = store.userData?.id
@@ -25,7 +27,6 @@ const handlerEmprestimos = async () => {
         }
       })
 
-
     emprestimos.value = response.data
 
   }catch (e){
@@ -36,6 +37,7 @@ const handlerEmprestimos = async () => {
 onMounted(() => {
   handlerEmprestimos()
 })
+
 </script>
 
 <template>

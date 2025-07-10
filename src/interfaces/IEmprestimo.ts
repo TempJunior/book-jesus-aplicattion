@@ -1,8 +1,9 @@
 export default interface IEmprestimo {
-  usuario: string;
-  livro: string;
-  autor: string;
+  id: number;
+  nomeUsuario: string;
+  titulosLivro: string;
+  autorNome: string;
   data_emprestimo: string;
   data_devolucao: string | null;
-  statusEmprestimo: string;
+  status: string;
 }

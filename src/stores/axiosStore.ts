@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios, { type AxiosInstance } from 'axios'
 import { ref } from 'vue'
 import type IUserData from '@/interfaces/IUserData.ts'
+import type IEmprestimo from '@/interfaces/IEmprestimo.ts'
 
 const options = {
   persist: {
@@ -14,11 +15,18 @@ export const useAxiosStore = defineStore('axiosStore', () => {
   const axiosInstance = axios.create({
     baseURL: 'http://localhost:8080/',
     headers: { 'Content-Type': 'application/json' },
+    timeout: 0,
   })
 
   const userData = ref<IUserData | null>(null)
 
   const tokenJWT = ref<string | null>(null)
+
+  const emprestimoData = ref<IEmprestimo | null>(null)
+
+  function setEmprestimoData(data: IEmprestimo){
+    emprestimoData.value = data;
+  }
 
 
   function setTokenJWT(token: string | null): void {
@@ -43,7 +51,7 @@ export const useAxiosStore = defineStore('axiosStore', () => {
 
   const http = ref<AxiosInstance>(axiosInstance)
 
-  return { http, userData, setUserData, clearUserData, tokenJWT, setTokenJWT }
+  return { http, userData, setUserData, clearUserData, tokenJWT, setTokenJWT, setEmprestimoData, emprestimoData }
 },
   options,
 )

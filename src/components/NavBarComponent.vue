@@ -121,9 +121,10 @@ console.log(store.userData)
                 </li>
                 <li>
                   <a
+                    @click="router.push({name: 'cadastrar_emprestimos'})"
                     href="#"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >Earnings</a
+                    >Cadastrar Emprestimo</a
                   >
                 </li>
               </ul>
